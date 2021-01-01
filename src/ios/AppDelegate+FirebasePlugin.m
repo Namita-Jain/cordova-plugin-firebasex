@@ -24,7 +24,7 @@ static AppDelegate* instance;
 static NSDictionary* mutableUserInfo;
 static FIRAuthStateDidChangeListenerHandle authStateChangeListener;
 static bool authStateChangeListenerInitialized = false;
-static bool shouldEstablishDirectChannel = false;
+// static bool shouldEstablishDirectChannel = false;
 
 - (void)setDelegate:(id)delegate {
     objc_setAssociatedObject(self, kDelegateKey, delegate, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
@@ -82,7 +82,7 @@ static bool shouldEstablishDirectChannel = false;
 
 
 
-        shouldEstablishDirectChannel = [[[NSBundle mainBundle] objectForInfoDictionaryKey:@"shouldEstablishDirectChannel"] boolValue];
+        // shouldEstablishDirectChannel = [[[NSBundle mainBundle] objectForInfoDictionaryKey:@"shouldEstablishDirectChannel"] boolValue];
 
         // Setup Firestore
         [FirebasePlugin setFirestore:[FIRFirestore firestore]];
@@ -151,14 +151,14 @@ didDisconnectWithUser:(GIDGoogleUser *)user
     }
 }
 
-- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-    [FIRMessaging messaging].APNSToken = deviceToken;
-    [FirebasePlugin.firebasePlugin _logMessage:[NSString stringWithFormat:@"didRegisterForRemoteNotificationsWithDeviceToken: %@", deviceToken]];
-    [FirebasePlugin.firebasePlugin sendApnsToken:[FirebasePlugin.firebasePlugin hexadecimalStringFromData:deviceToken]];
+// - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+//     [FIRMessaging messaging].APNSToken = deviceToken;
+//     [FirebasePlugin.firebasePlugin _logMessage:[NSString stringWithFormat:@"didRegisterForRemoteNotificationsWithDeviceToken: %@", deviceToken]];
+//     [FirebasePlugin.firebasePlugin sendApnsToken:[FirebasePlugin.firebasePlugin hexadecimalStringFromData:deviceToken]];
 
-    // Set UNUserNotificationCenter delegate
-    [UNUserNotificationCenter currentNotificationCenter].delegate = self;
-}
+//     // Set UNUserNotificationCenter delegate
+//     [UNUserNotificationCenter currentNotificationCenter].delegate = self;
+// }
 
 // Apple Sign In
 - (void)authorizationController:(ASAuthorizationController *)controller
